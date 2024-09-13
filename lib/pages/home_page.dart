@@ -8,6 +8,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: ThemeColors.bgScaffold,
       floatingActionButton: IconButton(
+        iconSize: 35,
+        style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(ThemeColors.bgAppBar),
+            minimumSize: WidgetStateProperty.all(Size(60, 60))),
         icon: Icon(Icons.shopping_cart_outlined),
         onPressed: () {
           Navigator.pushNamed(context, "/cart");
