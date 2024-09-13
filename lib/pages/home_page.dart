@@ -55,8 +55,7 @@ class _HomePageState extends State<HomePage> {
       if (state is CartBlocStateLoading) {
         return Center(child: CircularProgressIndicator());
       }
-      final productsInCart = (state as CartBlocStateLoaded).cart;
-      final productsList = state.productsList;
+      final productsList = (state as CartBlocStateLoaded).productsList;
       return GridView.builder(
           padding: EdgeInsets.fromLTRB(12, 50, 12, 100),
           itemCount: products.length,
@@ -97,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                     height: 5,
                   ),
                   Text(
-                    productsList[index].price.toString(),
+                    "${productsList[index].price.toStringAsFixed(2)} €",
                     style: TextStyle(color: Colors.black38),
                   ),
                   SizedBox(
