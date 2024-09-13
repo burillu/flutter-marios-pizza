@@ -103,6 +103,10 @@ class _HomePageState extends State<HomePage> {
                     height: 5,
                   ),
                   MaterialButton(
+                    elevation: 0,
+                    color: productsList[index].inShoppingCart
+                        ? Colors.red[300]
+                        : Colors.white,
                     onPressed: () {
                       BlocProvider.of<CartBloc>(context).add(
                           CartBlocEventProductToggle(

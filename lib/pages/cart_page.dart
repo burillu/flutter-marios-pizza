@@ -8,14 +8,20 @@ import 'package:marios_pizza/theme/colors.dart';
 class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ThemeColors.bgScaffold,
-      appBar: appBar(),
-      body: CustomScrollView(
-        slivers: [
-          sectionProducts(),
-          sectionCosts(),
-        ],
+    return BlocListener<CartBloc, CartBlocState>(
+      listener: (context, state) => {
+        if ((state as CartBlocStateLoaded).cart.isEmpty)
+          {Navigator.pop(context)}
+      },
+      child: Scaffold(
+        backgroundColor: ThemeColors.bgScaffold,
+        appBar: appBar(),
+        body: CustomScrollView(
+          slivers: [
+            sectionProducts(),
+            sectionCosts(),
+          ],
+        ),
       ),
     );
   }
@@ -33,10 +39,10 @@ class CartPage extends StatelessWidget {
 
   Widget sectionProducts() {
     return BlocBuilder<CartBloc, CartBlocState>(builder: (context, state) {
-      if (state is CartBlocStateLoading) {
-        return Center(child: CircularProgressIndicator());
-      }
       final productsInCart = (state as CartBlocStateLoaded).cart;
+      // if (productsInCart.isEmpty) {
+      //   Navigator.pop(context);
+      // }
       return SliverList.builder(
         itemCount: productsInCart.length,
         itemBuilder: (context, index) => Container(
@@ -102,10 +108,13 @@ class CartPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: MaterialButton(
                 onPressed: () {},
-                child: Text("Paga (€ ${total.toStringAsFixed(2)})"),
+                child: Text(
+                  "Acquista (€ ${total.toStringAsFixed(2)})",
+                  style: TextStyle(fontSize: 16),
+                ),
                 height: 45,
                 minWidth: (double.infinity),
-                color: Colors.green[300],
+                color: ThemeColors.bgAppBar,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
               ),
