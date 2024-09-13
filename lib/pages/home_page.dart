@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "Guaranteed Italian Pizza",
+            "Guaranteed Italian Food",
             style: TextStyle(fontSize: 15, color: Colors.black38),
           )
         ],
