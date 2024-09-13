@@ -104,13 +104,19 @@ class _HomePageState extends State<HomePage> {
                     height: 5,
                   ),
                   MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      BlocProvider.of<CartBloc>(context).add(
+                          CartBlocEventProductToggle(
+                              product: productsList[index]));
+                    },
                     minWidth: double.infinity,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.black26),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Text("Seleziona"),
+                    child: Text(productsList[index].inShoppingCart
+                        ? "Rimuovi"
+                        : "Seleziona"),
                   ),
                 ],
               ),
@@ -122,7 +128,7 @@ class _HomePageState extends State<HomePage> {
   Widget floatingButton() {
     return BlocBuilder<CartBloc, CartBlocState>(builder: (context, state) {
       if (state is CartBlocStateLoading) {
-        return Center(child: CircularProgressIndicator());
+        return SizedBox();
       }
       final productsInCart = (state as CartBlocStateLoaded).cart;
       if (productsInCart.isEmpty) {

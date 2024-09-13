@@ -8,12 +8,34 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
       await Future.delayed(Duration(seconds: 2));
       emit(CartBlocStateLoaded(productsList: products, cart: []));
     });
+    on<CartBlocEventProductToggle>(
+      (event, emit) {
+        final productList = (state as CartBlocStateLoaded).productsList;
+        List<ProductModel> actualCart = (state as CartBlocStateLoaded).cart;
+
+        final product =
+            productList.firstWhere((item) => item.name == event.product.name);
+        if (product.inShoppingCart) {
+          actualCart.remove(product);
+        } else {
+          actualCart.add(product);
+        }
+        product.inShoppingCart = !product.inShoppingCart;
+
+        emit(CartBlocStateLoaded(productsList: productList, cart: actualCart));
+      },
+    );
   }
 }
 
 abstract class CartBlocEvent {}
 
 class CartBlocEventInit extends CartBlocEvent {}
+
+class CartBlocEventProductToggle extends CartBlocEvent {
+  final ProductModel product;
+  CartBlocEventProductToggle({required this.product});
+}
 
 abstract class CartBlocState {}
 
