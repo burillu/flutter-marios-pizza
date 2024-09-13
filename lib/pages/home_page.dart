@@ -46,12 +46,59 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(12, 50, 12, 100),
         itemCount: products.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 12),
+            childAspectRatio: 3 / 4,
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12),
         itemBuilder: (context, index) {
           return Container(
+            padding: EdgeInsets.all(14),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(16)),
             margin: EdgeInsets.all(2),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            products[index].imageUrl,
+                          ),
+                          fit: BoxFit.cover,
+                        )),
+                    // child:
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  products[index].name,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  products[index].price.toString(),
+                  style: TextStyle(color: Colors.black38),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  minWidth: double.infinity,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black26),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text("Seleziona"),
+                ),
+              ],
+            ),
           );
         });
   }

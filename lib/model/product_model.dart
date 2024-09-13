@@ -15,7 +15,7 @@ class ProductModel {
 final products = [
   ProductModel(
     imageUrl:
-        "https://blog.giallozafferano.it/francinut87/wp-content/uploads/2021/04/Pizza-margherita-fatta-in-casa-orizzontale.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/c/c8/Pizza_Margherita_stu_spivack.jpg",
     name: "Pizza margherita",
     price: 5,
   ),
@@ -48,5 +48,17 @@ final products = [
         "https://www.sfizioso.it/wp-content/uploads/2019/12/Arrosto-allarancia_0003.jpg",
     name: "Arrosto all'arancia",
     price: 21,
+  ),
+  ProductModel(
+    imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2OI2AUZFOUqSOBUb5pyFSKhQatawaE3YudA&s",
+    name: "Pizza alla Carbonara",
+    price: 9.50,
+  ),
+  ProductModel(
+    imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5kwbI1-BQL3RBxAAISeeDWSTy2TrTNWdq9w&s",
+    name: "Pizza Mediterranea",
+    price: 9.50,
   ),
 ];
